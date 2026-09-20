@@ -1,0 +1,213 @@
+---
+import "../styles/global.css";
+import { projects } from "../data/projects";
+import { experience, skillGroups, education, certifications, contact } from "../data/resume";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Johnny Rodriguez — Full-Stack Software Engineer, Project Manager, and Data Analyst based in San Antonio, Texas."
+    />
+    <title>Johnny Rodriguez — Full-Stack SWE · Project Manager · Data Analyst</title>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="container nav-inner">
+        <a href="#top" class="logo">JR<span>.</span></a>
+        <div class="nav-links">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#experience">Experience</a>
+          <a href="#contact" class="nav-cta">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <header id="top" class="hero">
+      <div class="container">
+        <p class="eyebrow">San Antonio, Texas · 9+ years of experience</p>
+        <h1>Johnny Rodriguez</h1>
+        <h2 class="roles">
+          Full-Stack Software Engineer <span>·</span> Project Manager <span>·</span> Data Analyst
+        </h2>
+        <p class="lede">
+          I design and ship production systems end to end — from full-stack applications and
+          distributed services to LLM-powered platforms and data pipelines that drive decisions.
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-ghost">Get in Touch</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>9+</strong><span>Years Experience</span></div>
+          <div><strong>8</strong><span>Engineers Led</span></div>
+          <div><strong>2</strong><span>Native Languages</span></div>
+          <div><strong>15+</strong><span>Certifications</span></div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="section">
+        <div class="container">
+          <h2 class="section-title">About</h2>
+          <div class="about-grid">
+            <p>
+              I'm a software engineering lead who has spent the last nine years building
+              production systems that combine full-stack applications, distributed services,
+              and data platforms. My work spans the entire lifecycle: architecture, hands-on
+              development, team leadership, and deployment.
+            </p>
+            <p>
+              As a project manager I translate business workflows into technical roadmaps and
+              keep cross-functional teams shipping. As a data analyst I build the pipelines,
+              models, and visualizations that turn raw data into decisions — backed by Google
+              certifications in data engineering and analytics.
+            </p>
+            <p>
+              Recently I've focused on AI-powered products: retrieval-augmented generation
+              pipelines, agent-based automation, and LLM applications integrated with
+              enterprise systems — without losing sight of solid, maintainable engineering.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">Skills</h2>
+          <div class="skills-grid">
+            {
+              skillGroups.map((group) => (
+                <div class="skill-card">
+                  <h3>{group.title}</h3>
+                  <ul class="tags">
+                    {group.items.map((item) => (
+                      <li>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="section">
+        <div class="container">
+          <h2 class="section-title">Projects</h2>
+          <p class="section-sub">
+            A selection of systems I've architected and led. Case studies and links coming soon.
+          </p>
+          <div class="projects-grid">
+            {
+              projects.map((project) => (
+                <article class="project-card">
+                  <div class="project-head">
+                    <h3>{project.title}</h3>
+                    {project.status === "placeholder" && <span class="badge">Placeholder</span>}
+                  </div>
+                  <p class="project-role">
+                    {project.role} · {project.period}
+                  </p>
+                  <p class="project-desc">{project.description}</p>
+                  <ul class="tags">
+                    {project.tags.map((tag) => (
+                      <li>{tag}</li>
+                    ))}
+                  </ul>
+                  <a
+                    class="project-link"
+                    href={project.link}
+                    aria-disabled={project.status === "placeholder"}
+                    tabindex={project.status === "placeholder" ? -1 : 0}
+                  >
+                    View case study →
+                  </a>
+                </article>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section section-alt">
+        <div class="container">
+          <h2 class="section-title">Experience</h2>
+          <div class="timeline">
+            {
+              experience.map((job) => (
+                <div class="timeline-item">
+                  <div class="timeline-marker" />
+                  <div class="timeline-content">
+                    <p class="timeline-period">{job.period}</p>
+                    <h3>{job.role}</h3>
+                    <p class="timeline-company">{job.company}</p>
+                    <p>{job.summary}</p>
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      </section>
+
+      <section id="education" class="section">
+        <div class="container">
+          <div class="edu-grid">
+            <div>
+              <h2 class="section-title">Education</h2>
+              <ul class="edu-list">
+                {
+                  education.map((item) => (
+                    <li>
+                      <strong>{item.title}</strong>
+                      <span>{item.detail}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+            <div>
+              <h2 class="section-title">Certifications</h2>
+              <ul class="tags cert-tags">
+                {certifications.map((cert) => <li>{cert}</li>)}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section section-alt">
+        <div class="container contact">
+          <h2 class="section-title">Let's Work Together</h2>
+          <p class="section-sub">
+            Open to full-stack engineering, project management, and data/AI roles — remote or in
+            San Antonio.
+          </p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href={contact.phoneHref}>{contact.phone}</a>
+            <a class="btn btn-ghost" href={`mailto:${contact.email}`}>Email</a>
+            <a class="btn btn-ghost" href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+            <a class="btn btn-ghost" href={contact.github} target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <p>© {new Date().getFullYear()} Johnny Rodriguez</p>
+        <p>
+          Built with <a href="https://astro.build" target="_blank" rel="noopener">Astro</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
